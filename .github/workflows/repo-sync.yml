@@ -2,7 +2,20 @@ name: Repo Sync
 
 on:
   repository_dispatch:
-    types: [source-repo-push]
+    types: [source-merged]
+  workflow_dispatch:
+    inputs:
+      sync_branch:
+        description: 'Branch to sync'
+        required: true
+        default: 'main'
+      dry_run:
+        description: 'Perform a dry run?'
+        required: false
+        default: 'false'
+      custom_message:
+        description: 'Optional custom sync message'
+        required: false
 
 jobs:
   repo-sync:
